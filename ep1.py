@@ -3,6 +3,8 @@
 # Alunos: 
 # - aluno A: Fulano da Silva, fulanos@insper.edu.br
 # - aluno B: Sicrano de Almeida, sicranoa1@insper.edu.br
+def funcao(x):
+    
 
 def carregar_cenarios():
     cenarios = {
