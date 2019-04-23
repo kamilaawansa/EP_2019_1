@@ -119,7 +119,6 @@ def main():
                     inventario.append('chave')
                     print(inventario)
                     print()
-                    #FEATURE 3
                 if 'chave' in inventario:
                     print(' você entrou na sala mágica com a sua chave!!')
                     print('Escolha sua opção:  ')
@@ -143,7 +142,7 @@ def main():
                         print(inventario)
                     if decisao==decisao2:
                         print('O panda se irritou com você!')
-                #FEATURE 4 (teletransporte)
+                #Feature 4 (teletransporte)
                 ativar_tel= randint(1,10)
                 if len(opcoes)==0:
                     print("Acabaram-se suas opções! Mwo mwo mwooooo...")
