@@ -2,9 +2,18 @@
 #
 # Alunos: 
 # - aluno A: Kamila Addel Wansa, kamilaaw@al.insper.edu.br
-# - aluno B: Maria Victoria Cavalieri, mariavpcc@insper.edu.br    
+# - aluno B: Maria Victoria Cavalieri, mariavpcc@insper.edu.br  
+from random import randint   
 def carregar_cenarios():
     cenarios = {
+        "Opções combate": {
+            "titulo": "COMBATE",
+            "descricao": "Você entrou em um combate",
+            "opcoes": {
+                "decisao1": "Abraçar o panda da sala mágica",
+                "decisao2": "Chutar o panda da sala mágica"
+            }
+        },
         "inicio": {
             "titulo": "Saguao do perigo",
             "descricao": "Voce esta no saguao de entrada do insper",
@@ -53,7 +62,7 @@ def main():
     print()
 
     cenarios, nome_cenario_atual = carregar_cenarios()
-
+    inventario=[]
     game_over = False
     while not game_over:
         cenario_atual = cenarios[nome_cenario_atual]
@@ -62,30 +71,97 @@ def main():
         print("-"* len(cenario_atual["titulo"]))
         print(cenario_atual["descricao"])
         print()
-        print(cenario_atual["opcoes"]["andar professor"])
-        print(cenario_atual["opcoes"]["biblioteca"])
-        print() 
         
-        
-        opcoes = cenario_atual['opcoes']
+        opcoes = cenario_atual["opcoes"]
         if len(opcoes) == 0:
             print("Acabaram-se suas opções! Mwo mwo mwooooo...")
             game_over = True
         else:
-
-            # Aluno B: substitua este comentário e a linha abaixo pelo código
-            # para pedir a escolha do usuário.
-            escolha = ""
-
+            print("Escolha sua opção: ")
+            print()
+            for opcao,valor in opcoes.items():
+                print('{0}:{1}'.format(opcao,valor))
+                
+            escolha = input("O que você quer fazer? ") 
+                
             if escolha in opcoes:
                 nome_cenario_atual = escolha
-            else:
-                print("Sua indecisão foi sua ruína!")
-                game_over = True
-
+                #hit point: FEATURE 1 
+                MP=(["MONSTRO!!!", "PRÊMIO"][randint(0,1)])
+                print(MP)
+                if MP== "MONSTRO!!!":
+                    #FEATURE 2 
+                    print("COMBATE!")
+                    print()
+                    print["Opções combate"]
+                    print("Escolha sua opção: ")
+                    decisao1= "Atacar monstro com um garfo"
+                    print(decisao1)
+                    decisao2= "Atacar monstro com espada"
+                    print(decisao2)
+                    print()
+                    decisao=input("O que você vai fazer? ")
+                    if decisao==decisao1:
+                        game_over = True 
+                    else: 
+                        print("Você derrotou o monstro!")
+                        print()
+                        print('Você ganhou uma chave')
+                        inventario.append('chave')
+                        print(inventario)
+                        print()
+                elif MP== "PRÊMIO":
+                    print("Você ganhou 100 moedas de ouro!")
+                    inventario.append('100 moedas de ouro')
+                    print(inventario)
+                    print()
+                    print('Você ganhou uma chave')
+                    inventario.append('chave')
+                    print(inventario)
+                    print()
+                    #FEATURE 3
+                if 'chave' in inventario:
+                    print(' você entrou na sala mágica com a sua chave!!')
+                    print('Escolha sua opção:  ')
+                    decisao1= "Abraçar o panda da sala mágica"
+                    print(decisao1)
+                    decisao2= "Chutar o panda da sala mágica"
+                    print(decisao2)
+                    print()
+                    decisao=input("O que você vai fazer? ")
+                    if decisao==decisao1:
+                        print('parabéns, você ganhou um prêmio!')
+                        PR=(["moedas de ouro", "poção mágica"][randint(0,1)])
+                        print(PR) 
+                    if PR== "moedas de ouro":
+                        print('parabéns, você ganhou moedas!!!')
+                        inventario.append('20 moedas')
+                        print(inventario)
+                    elif PR== "poção mágica":
+                        print('parabéns, você ganhou uma poção mágica!')
+                        inventario.append('poção mágica')  
+                        print(inventario)
+                    if decisao==decisao2:
+                        print('O panda se irritou com você!')
+                #FEATURE 4 (teletransporte)
+                ativar_tel= randint(1,10)
+                if len(opcoes)==0:
+                    print("Acabaram-se suas opções! Mwo mwo mwooooo...")
+                    game_over= True
+                elif ativar_tel==2:
+                    cenario_desejado= input('Parabéns, você tem direito a um teletransporte! Para qual cenário você quer ir? ')
+                    if cenario_desejado in cenarios:
+                        nome_cenario_atual= cenario_desejado
+                    else:
+                        print('Esse não é um cenário possível!')
+                        game_over=True 
+                    break
+    else:
+            print("Sua indecisão foi sua ruína!")
+            game_over = True
     print("Você morreu!")
-
 
 # Programa principal.
 if __name__ == "__main__":
     main()
+         
